@@ -1,0 +1,193 @@
+---
+const links = [
+  { label: "Servicios", href: "#servicios" },
+  { label: "Nuestro Arte", href: "#portfolio" },
+  { label: "Filosofía", href: "#filosofia" },
+];
+---
+
+<header
+  id="main-header"
+  data-scrolled="false"
+  class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent group/header"
+>
+  <div
+    class="absolute inset-0 bg-white/90 backdrop-blur-md -z-10 transition-opacity duration-300 opacity-0 group-data-[scrolled=true]/header:opacity-100 shadow-sm"
+    id="header-bg"
+  >
+  </div>
+
+  <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+    <a
+      href="/"
+      class="relative z-50 group flex flex-col items-start"
+      aria-label="Ir al inicio"
+    >
+      <span
+        class="text-2xl font-serif italic font-medium leading-none transition-colors duration-300
+               text-white group-data-[scrolled=true]/header:text-gray-900 
+               hover:text-yellow-600"
+      >
+        Aurora
+      </span>
+      <span
+        class="text-[0.5rem] tracking-[0.3em] uppercase font-bold leading-none mt-1 transition-colors duration-300
+               text-white/80 group-data-[scrolled=true]/header:text-gray-600"
+      >
+        Estudio Capilar
+      </span>
+    </a>
+
+    <nav
+      class="hidden md:flex items-center gap-8"
+      aria-label="Navegación principal"
+    >
+      <ul class="flex items-center gap-8">
+        {
+          links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="group/link relative text-sm font-medium transition-colors duration-300
+                       text-white/90 group-data-[scrolled=true]/header:text-gray-800
+                       hover:text-yellow-600 group-data-[scrolled=true]/header:hover:text-yellow-600"
+              >
+                {link.label}
+                <span class="absolute left-0 -bottom-1 w-0 h-px bg-yellow-600 transition-all duration-300 group-hover/link:w-full" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <a
+        href="#contacto"
+        class="relative overflow-hidden rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-lg
+               bg-white text-gray-900
+               group-data-[scrolled=true]/header:bg-gray-900 group-data-[scrolled=true]/header:text-white"
+      >
+        <span class="relative z-10">Reservar</span>
+      </a>
+    </nav>
+
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5 group focus:outline-none"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span
+        class="w-6 h-0.5 transition-all duration-300 origin-center group-data-[state=open]:rotate-45 group-data-[state=open]:translate-y-2
+               bg-white group-data-[scrolled=true]/header:bg-gray-900 group-data-[state=open]:!bg-gray-900"
+      ></span>
+      <span
+        class="w-6 h-0.5 transition-all duration-300 group-data-[state=open]:opacity-0
+               bg-white group-data-[scrolled=true]/header:bg-gray-900 group-data-[state=open]:!bg-gray-900"
+      ></span>
+      <span
+        class="w-6 h-0.5 transition-all duration-300 origin-center group-data-[state=open]:-rotate-45 group-data-[state=open]:-translate-y-2
+               bg-white group-data-[scrolled=true]/header:bg-gray-900 group-data-[state=open]:!bg-gray-900"
+      ></span>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-center items-center md:hidden"
+    aria-hidden="true"
+  >
+    <nav class="flex flex-col items-center gap-8">
+      {
+        links.map((link, index) => (
+          <a
+            href={link.href}
+            class="mobile-link text-3xl font-serif italic text-gray-900 hover:text-yellow-600 transition-colors duration-300 opacity-0 translate-y-4"
+            style={`transition-delay: ${index * 100}ms`}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="#contacto"
+        class="mobile-link mt-8 px-8 py-4 bg-yellow-600 text-white rounded-full text-sm font-bold uppercase tracking-widest opacity-0 translate-y-4 hover:bg-yellow-700 transition-colors"
+        style={`transition-delay: ${links.length * 100}ms`}
+      >
+        Reservar Cita
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("main-header");
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const links = document.querySelectorAll(".mobile-link");
+  const body = document.body;
+
+  // --- LÓGICA DE SCROLL ---
+  const handleScroll = () => {
+    if (!header) return;
+    
+    // Si bajamos más de 20px, cambiamos el atributo data-scrolled a "true"
+    if (window.scrollY > 20) {
+      header.setAttribute("data-scrolled", "true");
+      // Opcional: añadir borde gris al bajar
+      header.classList.add("border-gray-200");
+    } else {
+      header.setAttribute("data-scrolled", "false");
+      header.classList.remove("border-gray-200");
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll(); // Inicializar
+
+  // --- LÓGICA DE MENÚ MÓVIL ---
+  let isOpen = false;
+
+  const toggleMenu = () => {
+    isOpen = !isOpen;
+
+    btn?.setAttribute("aria-expanded", String(isOpen));
+    btn?.setAttribute("data-state", isOpen ? "open" : "closed");
+
+    if (isOpen) {
+      menu?.classList.remove("translate-x-full");
+      menu?.setAttribute("aria-hidden", "false");
+      body.style.overflow = "hidden";
+
+      // Fuerza el color negro en el botón cuando el menú está abierto (fondo blanco)
+      const spans = btn?.querySelectorAll("span");
+      spans?.forEach(span => span.classList.add("!bg-gray-900"));
+
+      setTimeout(() => {
+        links.forEach((link) => {
+          link.classList.remove("opacity-0", "translate-y-4");
+        });
+      }, 300);
+    } else {
+      menu?.classList.add("translate-x-full");
+      menu?.setAttribute("aria-hidden", "true");
+      body.style.overflow = "";
+
+      // Quita el forzado de color
+      const spans = btn?.querySelectorAll("span");
+      spans?.forEach(span => span.classList.remove("!bg-gray-900"));
+
+      links.forEach((link) => {
+        link.classList.add("opacity-0", "translate-y-4");
+      });
+    }
+  };
+
+  btn?.addEventListener("click", toggleMenu);
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isOpen) toggleMenu();
+    });
+  });
+</script>

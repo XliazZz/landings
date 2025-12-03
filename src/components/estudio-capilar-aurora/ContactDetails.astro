@@ -1,0 +1,66 @@
+---
+const itemsList = [
+  {
+    title: "Visítanos",
+    address: "Calle Ficticia 123, Salamanca<br />28001 Madrid, España",
+    icon: "location-on-outline",
+  },
+  {
+    title: "Contacto Directo",
+    email: "citas@aurorastudio.com",
+    phone: "+34 912 345 678",
+    icon: "mail-outline-rounded",
+  },
+  {
+    title: "Horario",
+    schedule: "Lunes a Sábado: 10:00 - 20:00",
+    icon: "nest-clock-farsight-analog-outline",
+  },
+];
+---
+
+<div class="space-y-8">
+  {
+    itemsList.map((item) => (
+      <div class="flex gap-4 items-start group">
+        <div class="flex-none w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 fill-current"
+            aria-hidden="true"
+          >
+            <use href={`/estudio-capilar-aurora-Sprite.svg#${item.icon}`} />
+          </svg>
+        </div>
+
+        <div>
+          <h4 class="text-text-light dark:text-text-dark font-bold uppercase tracking-wider text-xs mb-1">
+            {item.title}
+          </h4>
+
+          {item.title === "Visítanos" ? (
+            <address
+              class="text-text-light/80 dark:text-text-dark/80 not-italic font-light leading-relaxed"
+              set:html={item.address}
+            />
+          ) : (
+            <div class="text-text-light/80 dark:text-text-dark/80 font-light leading-relaxed">
+              {item.email && (
+                <a
+                  href={`mailto:${item.email}`}
+                  class="block hover:text-primary transition-colors duration-200"
+                >
+                  {item.email}
+                </a>
+              )}
+              {item.phone && <p>{item.phone}</p>}
+              {item.schedule && <p>{item.schedule}</p>}
+            </div>
+          )}
+        </div>
+      </div>
+    ))
+  }
+</div>

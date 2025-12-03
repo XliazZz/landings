@@ -1,0 +1,135 @@
+---
+import FooterMenu from "./FooterMenu.astro";
+import Newsletter from "./newsletter/Newsletter.astro";
+import FooterSocial from "./FooterSocial.astro";
+
+const currentYear = new Date().getFullYear();
+
+const links = {
+  explora: [
+    { label: "Servicios", href: "#servicios" },
+    { label: "Nuestro Arte", href: "#portfolio" },
+    { label: "Filosofía", href: "#filosofia" },
+    { label: "Reservar Cita", href: "#contacto" },
+  ],
+  legal: [
+    { label: "Aviso Legal", href: "/aviso-legal" },
+    { label: "Privacidad", href: "/privacidad" },
+    { label: "Cookies", href: "/cookies" },
+  ],
+  socials: [
+    { label: "Instagram", href: "#", icon: "instagram" },
+    { label: "TikTok", href: "#", icon: "tiktok" },
+    { label: "WhatsApp", href: "#", icon: "whatsapp" },
+  ],
+};
+---
+
+<footer
+  id="main-footer"
+  class="relative bg-background-light dark:bg-background-dark pt-20 pb-10 overflow-hidden border-t border-gray-200 dark:border-gray-800"
+>
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+      <div
+        class="md:col-span-4 footer-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]"
+      >
+        <a href="/" class="group inline-block mb-6">
+          <span
+            class="text-2xl font-serif italic font-medium text-text-light dark:text-text-dark group-hover:text-primary transition-colors duration-500"
+          >
+            Aurora
+          </span>
+          <span
+            class="block text-[0.6rem] tracking-[0.3em] uppercase text-primary font-bold mt-1"
+          >
+            Estudio Capilar
+          </span>
+        </a>
+        <p
+          class="text-text-light/60 dark:text-text-dark/60 text-sm leading-relaxed max-w-xs font-light"
+        >
+          Elevando el cuidado capilar a la categoría de arte. Un espacio donde
+          la técnica y la creatividad convergen para revelar tu mejor versión.
+        </p>
+      </div>
+
+      <div
+        class="md:col-span-4 flex gap-12 footer-reveal opacity-0 translate-y-8 transition-all duration-1000 delay-150 ease-[cubic-bezier(0.25,1,0.5,1)]"
+      >
+        <FooterMenu title="Explora" links={links.explora} />
+        <FooterMenu title="Legal" links={links.legal} />
+      </div>
+
+      <div
+        class="md:col-span-4 footer-reveal opacity-0 translate-y-8 transition-all duration-1000 delay-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+      >
+        <Newsletter />
+      </div>
+    </div>
+
+    <div
+      class="h-px w-full bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent mb-12 footer-reveal opacity-0 scale-x-0 transition-all duration-1000 delay-500 ease-out"
+    >
+    </div>
+
+    <div
+      class="flex flex-col md:flex-row justify-between items-center gap-6 footer-reveal opacity-0 translate-y-4 transition-all duration-1000 delay-700 ease-out"
+    >
+      <p class="text-xs text-text-light/40 dark:text-text-dark/40 font-light">
+        © {currentYear} Estudio Capilar Aurora. Todos los derechos reservados.
+      </p>
+
+      <div class="flex gap-6">
+        <FooterSocial links={links.socials} />
+      </div>
+    </div>
+
+    <div
+      class="mt-20 select-none pointer-events-none footer-reveal opacity-0 scale-95 transition-all duration-1500 delay-500 ease-out"
+    >
+      <h1
+        class="text-[13vw] sm:text-[14vw] leading-none font-serif italic text-center text-gray-100 dark:text-white/[0.03] font-medium tracking-tight mix-blend-multiply dark:mix-blend-normal"
+      >
+        AURORA
+      </h1>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Script de Animación Optimizado
+  document.addEventListener("DOMContentLoaded", () => {
+    const footer = document.getElementById("main-footer");
+
+    if (footer) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const reveals = entry.target.querySelectorAll(".footer-reveal");
+              reveals.forEach((el) => {
+                // Eliminamos las clases de transformación para que vuelva a su estado natural
+                el.classList.remove(
+                  "opacity-0",
+                  "translate-y-8",
+                  "translate-y-4",
+                  "scale-x-0",
+                  "scale-95"
+                );
+              });
+              // Dejamos de observar una vez animado
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.15, // Espera un poco más para asegurar que el usuario realmente ve el footer
+          rootMargin: "0px",
+        }
+      );
+
+      observer.observe(footer);
+    }
+  });
+</script>

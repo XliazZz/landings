@@ -1,0 +1,37 @@
+---
+interface Link {
+  label: string;
+  href: string;
+  icon: string;
+}
+
+interface Props {
+  links: Link[];
+}
+
+const { links } = Astro.props;
+---
+
+{
+  links.map((social) => (
+    <a
+      href={social.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group text-text-light/40 dark:text-text-dark/40 hover:text-primary transition-colors duration-300"
+      aria-label={`Visita nuestro perfil de ${social.label}`}
+    >
+      <div class="transform transition-transform duration-300 group-hover:-translate-y-1">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          class="fill-current"
+          aria-hidden="true"
+        >
+          <use href={`/estudio-capilar-aurora-Sprite.svg#${social.icon}`} />
+        </svg>
+      </div>
+    </a>
+  ))
+}

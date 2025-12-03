@@ -1,0 +1,232 @@
+---
+/* --- DATOS DEL PORTAFOLIO --- */
+const portfolioItems = [
+  {
+    title: "Balayage",
+    category: "Coloración",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAY_WYlYcHkjxnj34m5ucMB9eMPg2bVwYdFO1LnzleWAeaYNLnRtsBwmEoOaPluDFLTzcx_dZESBTqDpnneH1JdRd1b33biOvQxc6KECh4zf1SjuuGeuKuonuwCfKxWM77gcHe7MyK2vfXljbz_z-xthaDFrihbQ1JhjYJRVccipb1FDIqJb8HXLPuEAf9ZqhnNJtOO5rc8hE8JCGZe8RzDoiMUQYS0P0PfqKcGT4MyESuSKs0XpZyc_MVRRD3SxEVugyUD8lota0Mh",
+    alt: "Mujer mostrando cabello con técnica balayage",
+  },
+  {
+    title: "Corte Bob",
+    category: "Corte",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuD1frAqXFWajQ7BaNrJxONt8HdUOQtUaEQEHmGm6ZKXDNgA5kxhOdFKJb9GTShJmx5zgci6irlvlsWrl8u1vFaNgYbL6TI41Ra0kEYZ4qv-HOh5ElntlOn80bYwXRmH0Sd_lIyXRJrA6CLNT9yM8D1HB6BPEsLZRHZ1G-FuUPYOCeH8dXe4bSOjn1pf2_rXUIqJX6kV-9d4gKKKnXqgjHtpfHrTGwbNmMZ-HtVJQ3uxGB6nbpAyHVmCKiRp4y9zQx8d-AsLIY2sepkx",
+    alt: "Mujer con corte de cabello estilo Bob",
+  },
+  {
+    title: "Reflejos Naturales",
+    category: "Iluminación",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA12ZYVZ5HV4mL9tL2Z-ZyyzGjwh-JHBhqzDBGPCEzzZg7-nEXscBzcVu-ZU__YaLl-U6T0eJyKz-AS47vAgRF7H6GCKSHG2Tbe14UoaTvrJl9iyr3A4Hn0O0AwJ0pZeuc6nssrZk-rgZt0kkVJkd52B9arPYW5K_B5N0yvkX6uv_rIoG3BuxlnV3mgplWojSPOZFW_UmGcRpH3ZCt2AvlvzX8tUO-oLksZeUGTSpoSYEOBAtpXaTZsv8_FLEwQI60wJPsg-bw9A1xa",
+    alt: "Primer plano de cabello con iluminación sutil",
+  },
+  {
+    title: "Corte Shag",
+    category: "Tendencia",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDnZKbi1OEm2ewMWbRCqtwjmvdFuNwjgiruGIUuGpwujZQkWfXH3XolGtpPGETr4QHk96r8BYmUNmy7a7Hb4q6WaEfMr3bVfMpKJK43a1lx2u08Wf-PnHUnHPAqVH0oYHsmvAJgtlCzZhdBD_WOIehM3CLvXjrXW6UAeA9EaHsEt0Kt7TnSdfeRiLKmJuAKrTmiOWm0Y92My6Neopq-N9jubYSR4UaYqnr36-ZZX-avXreg5Q9Hk2ijWqZq6nf34hMAs6-NegFxa0IY",
+    alt: "Mujer con corte Shag texturizado",
+  },
+  {
+    title: "Color Fantasía",
+    category: "Color",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBpJhPPJ0Il1YSyutdHOl8QotSQnvNoBomgHJ0GYj4eHF7lDTs7_x5GWgsHOqepLe9aRwm7SXMM0bpHMMcm85ZuwsoLZfXcfh-9sHy6cC60Io7VtIQFiM_MLE2LAKpRXsb9JKu1lazdXalyKzAZa24qcRAq0_n5ae1E16Hq6os3eaJ9xHJeNDAgqAPFw4Wq858xVCpB4L2TziU5-anwKqwQZ-7BouvLJW345GD8bwlkXTnQcQ45ytoEV404wPfbNUZ4fe5XsCL6Odh-",
+    alt: "Peinado creativo con colores vibrantes",
+  },
+];
+
+/* CORRECCIÓN CRÍTICA: Usamos 3 sets para que la matemática (/3) funcione perfecto */
+const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
+---
+
+<section
+  class="py-16 sm:py-24 bg-gray-50 dark:bg-background-dark overflow-hidden"
+>
+  <div class="container mx-auto px-6 mb-16 sm:mb-24 flex flex-col items-center">
+    <span
+      class="text-primary text-xs font-bold tracking-[0.2em] uppercase mb-4"
+    >
+      Galería Exclusiva
+    </span>
+    <h2
+      class="text-text-light dark:text-text-dark text-4xl sm:text-6xl font-light uppercase tracking-tight text-center max-w-3xl"
+    >
+      Nuestro <span class="font-serif italic font-medium">Arte</span>
+    </h2>
+    <div class="h-px w-24 bg-current opacity-20 mt-8"></div>
+  </div>
+
+  <div class="relative w-full">
+    <div
+      class="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none"
+    >
+    </div>
+    <div
+      class="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none"
+    >
+    </div>
+
+    <div
+      id="carousel-track"
+      class="flex gap-4 sm:gap-6 overflow-x-hidden w-full select-none cursor-grab active:cursor-grabbing px-4"
+    >
+      {
+        tripleItems.map((item, index) => (
+          <figure class="relative flex-none w-[260px] sm:w-[320px] md:w-[380px] group/card">
+            <div class="relative aspect-[3/4] overflow-hidden bg-gray-100 dark:bg-gray-900 shadow-sm transition-shadow duration-500 hover:shadow-2xl">
+              <img
+                src={item.image}
+                alt={item.alt}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover pointer-events-none transform transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/card:scale-110"
+              />
+
+              <div
+                class="absolute inset-0 bg-black/20 
+                          opacity-100 md:opacity-0 md:group-hover/card:opacity-100 
+                          transition-opacity duration-500 pointer-events-none"
+              />
+
+              <div
+                class="absolute bottom-6 left-6 right-6 
+                          opacity-100 translate-y-0
+                          md:opacity-0 md:translate-y-4 
+                          md:group-hover/card:translate-y-0 md:group-hover/card:opacity-100 
+                          transition-all duration-500 ease-out pointer-events-none"
+              >
+                <div class="backdrop-blur-md bg-white/10 border border-white/20 p-4 shadow-lg">
+                  <span class="text-white/80 text-xs tracking-widest uppercase block mb-1">
+                    {item.category}
+                  </span>
+                  <h3 class="text-white text-xl font-medium tracking-wide font-serif italic">
+                    {item.title}
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="container mx-auto px-6 mt-12 flex justify-center">
+    <p
+      class="text-xs text-text-light/40 dark:text-text-dark/40 uppercase tracking-widest"
+    >
+      Arrastra para explorar
+    </p>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById("carousel-track");
+
+  const autoScrollSpeed = 1;
+  const dragSensitivity = 1;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  let animationId = null;
+
+  const autoScroll = () => {
+    if (track) {
+      track.scrollLeft += autoScrollSpeed;
+      checkInfiniteLoop();
+      animationId = requestAnimationFrame(autoScroll);
+    }
+  };
+
+  const startAutoScroll = () => {
+    if (animationId) cancelAnimationFrame(animationId);
+    autoScroll();
+  };
+
+  const stopAutoScroll = () => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+  };
+
+  const checkInfiniteLoop = () => {
+    if (!track) return;
+
+    // Aquí está la clave: scrollWidth / 3 funciona perfecto porque ahora tenemos 3 sets
+    const oneSetWidth = track.scrollWidth / 3;
+
+    // Si pasamos el final del set 2 -> volvemos al inicio del set 2
+    if (track.scrollLeft >= oneSetWidth * 2) {
+      track.scrollLeft -= oneSetWidth;
+    }
+    // Si intentamos ir antes del inicio del set 2 -> vamos al final del set 2
+    else if (track.scrollLeft <= 0) {
+      track.scrollLeft += oneSetWidth;
+    }
+  };
+
+  track.addEventListener("mousedown", (e) => {
+    isDown = true;
+    track.classList.add("active:cursor-grabbing");
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    stopAutoScroll();
+  });
+
+  const stopDragging = () => {
+    isDown = false;
+    track.classList.remove("active:cursor-grabbing");
+    startAutoScroll();
+  };
+
+  track.addEventListener("mouseleave", stopDragging);
+  track.addEventListener("mouseup", stopDragging);
+
+  track.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * dragSensitivity;
+    track.scrollLeft = scrollLeft - walk;
+    checkInfiniteLoop();
+  });
+
+  track.addEventListener(
+    "touchstart",
+    (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+      stopAutoScroll();
+    },
+    { passive: true }
+  );
+
+  track.addEventListener("touchend", () => {
+    isDown = false;
+    startAutoScroll();
+  });
+
+  track.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - track.offsetLeft;
+      const walk = (x - startX) * dragSensitivity;
+      track.scrollLeft = scrollLeft - walk;
+      checkInfiniteLoop();
+    },
+    { passive: true }
+  );
+
+  if (track) {
+    // Iniciamos exactamente en el comienzo del segundo set (el del medio)
+    track.scrollLeft = track.scrollWidth / 3;
+    startAutoScroll();
+  }
+</script>
