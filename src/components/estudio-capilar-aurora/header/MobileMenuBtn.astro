@@ -1,0 +1,20 @@
+<button
+  id="mobile-menu-btn"
+  class="md:hidden relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5 group focus:outline-none"
+  aria-label="Abrir menú"
+  aria-expanded="false"
+  aria-controls="mobile-menu"
+>
+  <span
+    class="w-6 h-0.5 transition-all duration-300 origin-center group-data-[state=open]:rotate-45 group-data-[state=open]:translate-y-2
+           bg-white group-data-[scrolled=true]/header:bg-gray-900 group-data-[state=open]:!bg-gray-900"
+  ></span>
+  <span
+    class="w-6 h-0.5 transition-all duration-300 group-data-[state=open]:opacity-0
+           bg-white group-data-[scrolled=true]/header:bg-gray-900 group-data-[state=open]:!bg-gray-900"
+  ></span>
+  <span
+    class="w-6 h-0.5 transition-all duration-300 origin-center group-data-[state=open]:-rotate-45 group-data-[state=open]:-translate-y-2
+           bg-white group-data-[scrolled=true]/header:bg-gray-900 group-data-[state=open]:!bg-gray-900"
+  ></span>
+</button>
