@@ -1,5 +1,4 @@
 ---
-/* --- DATOS DEL PORTAFOLIO --- */
 const portfolioItems = [
   {
     title: "Balayage",
@@ -38,7 +37,6 @@ const portfolioItems = [
   },
 ];
 
-/* CORRECCIÓN CRÍTICA: Usamos 3 sets para que la matemática (/3) funcione perfecto */
 const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
 ---
 
@@ -54,19 +52,13 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
     >
       Nuestro <span class="font-serif italic font-medium">Arte</span>
     </h2>
-    <div class="h-px w-24 bg-current opacity-20 mt-8"></div>
+    <div
+      class="h-px w-24 bg-current dark:bg-white dark:opacity-70 opacity-20 mt-8"
+    >
+    </div>
   </div>
 
   <div class="relative w-full">
-    <div
-      class="absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none"
-    >
-    </div>
-    <div
-      class="absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-background-light dark:from-background-dark to-transparent z-10 pointer-events-none"
-    >
-    </div>
-
     <div
       id="carousel-track"
       class="flex gap-4 sm:gap-6 overflow-x-hidden w-full select-none cursor-grab active:cursor-grabbing px-4"
@@ -114,7 +106,7 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
 
   <div class="container mx-auto px-6 mt-12 flex justify-center">
     <p
-      class="text-xs text-text-light/40 dark:text-text-dark/40 uppercase tracking-widest"
+      class="text-xs text-text-light/40 dark:text-white/90 uppercase tracking-widest"
     >
       Arrastra para explorar
     </p>
@@ -128,9 +120,9 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
   const dragSensitivity = 1;
 
   let isDown = false;
-  let startX;
-  let scrollLeft;
-  let animationId = null;
+  let startX: any;
+  let scrollLeft: any;
+  let animationId: any = null;
 
   const autoScroll = () => {
     if (track) {
@@ -155,20 +147,16 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
   const checkInfiniteLoop = () => {
     if (!track) return;
 
-    // Aquí está la clave: scrollWidth / 3 funciona perfecto porque ahora tenemos 3 sets
     const oneSetWidth = track.scrollWidth / 3;
 
-    // Si pasamos el final del set 2 -> volvemos al inicio del set 2
     if (track.scrollLeft >= oneSetWidth * 2) {
       track.scrollLeft -= oneSetWidth;
-    }
-    // Si intentamos ir antes del inicio del set 2 -> vamos al final del set 2
-    else if (track.scrollLeft <= 0) {
+    } else if (track.scrollLeft <= 0) {
       track.scrollLeft += oneSetWidth;
     }
   };
 
-  track.addEventListener("mousedown", (e) => {
+  track?.addEventListener("mousedown", (e) => {
     isDown = true;
     track.classList.add("active:cursor-grabbing");
     startX = e.pageX - track.offsetLeft;
@@ -178,14 +166,14 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
 
   const stopDragging = () => {
     isDown = false;
-    track.classList.remove("active:cursor-grabbing");
+    track?.classList.remove("active:cursor-grabbing");
     startAutoScroll();
   };
 
-  track.addEventListener("mouseleave", stopDragging);
-  track.addEventListener("mouseup", stopDragging);
+  track?.addEventListener("mouseleave", stopDragging);
+  track?.addEventListener("mouseup", stopDragging);
 
-  track.addEventListener("mousemove", (e) => {
+  track?.addEventListener("mousemove", (e) => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - track.offsetLeft;
@@ -194,7 +182,7 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
     checkInfiniteLoop();
   });
 
-  track.addEventListener(
+  track?.addEventListener(
     "touchstart",
     (e) => {
       isDown = true;
@@ -205,12 +193,12 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
     { passive: true }
   );
 
-  track.addEventListener("touchend", () => {
+  track?.addEventListener("touchend", () => {
     isDown = false;
     startAutoScroll();
   });
 
-  track.addEventListener(
+  track?.addEventListener(
     "touchmove",
     (e) => {
       if (!isDown) return;
@@ -223,7 +211,6 @@ const tripleItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
   );
 
   if (track) {
-    // Iniciamos exactamente en el comienzo del segundo set (el del medio)
     track.scrollLeft = track.scrollWidth / 3;
     startAutoScroll();
   }

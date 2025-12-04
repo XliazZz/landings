@@ -11,3 +11,9 @@
   /* Colores (asegúrate de tenerlos aquí si los usas) */
   --color-primary: #ca8a04; 
 }
+
+::selection {
+  background-color: #ca8a04; /* Tu yellow-600 */
+  color: white;
+}
+
