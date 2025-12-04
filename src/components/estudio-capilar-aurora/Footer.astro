@@ -88,9 +88,27 @@ const links = {
     <div
       class="flex flex-col md:flex-row justify-between items-center gap-6 footer-reveal opacity-0 translate-y-4 transition-all duration-1000 delay-700 ease-out"
     >
-      <p class="text-xs text-text-light/40 dark:text-white/80 font-light">
-        © {currentYear} Estudio Capilar Aurora. Todos los derechos reservados.
-      </p>
+      <div
+        class="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-xs text-text-light/40 dark:text-white/80 font-light"
+      >
+        <p>© {currentYear} Estudio Capilar Aurora.</p>
+
+        <span class="hidden md:block w-px h-3 bg-current opacity-30"></span>
+
+        <a
+          href="https://www.instagram.com/eliasx.2/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group/dev flex items-center gap-1 transition-colors duration-300 hover:text-text-light dark:hover:text-white"
+        >
+          <span>Desarrollado por</span>
+          <span
+            class="font-medium text-text-light/60 dark:text-white group-hover/dev:text-primary transition-colors"
+          >
+            Elias Dev
+          </span>
+        </a>
+      </div>
 
       <div class="flex gap-6">
         <FooterSocial links={links.socials} />

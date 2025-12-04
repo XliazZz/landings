@@ -1,0 +1,67 @@
+---
+import Aurora404 from "../components/estudio-capilar-aurora/Error404.astro";
+import Generic404 from "../components/generic/Error404.astro";
+
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Página no encontrada</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Tenor+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      #aurora-container,
+      #generic-container {
+        display: none;
+      }
+
+      .show-view {
+        display: block !important;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="aurora-container">
+      <Aurora404 />
+    </div>
+
+    <div id="generic-container">
+      <Generic404 />
+    </div>
+
+    <script>
+      (function () {
+        const path = window.location.pathname;
+
+        const auroraView = document.getElementById("aurora-container");
+        const genericView = document.getElementById("generic-container");
+
+        if (path.startsWith("/aurora") || path.includes("estudio")) {
+          if (auroraView) auroraView.classList.add("show-view");
+        } else {
+          if (genericView) genericView.classList.add("show-view");
+        }
+      })();
+    </script>
+  </body>
+</html>
