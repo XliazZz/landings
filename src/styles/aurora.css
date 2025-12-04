@@ -23,3 +23,7 @@
   background-color: #ca8a04;
   border-radius: 10px;
 }
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
