@@ -22,7 +22,8 @@ const { links } = Astro.props;
   </div>
 
   <div
-    class="flex-1 flex flex-col px-6 pt-24 pb-24 overflow-y-auto h-full relative z-10"
+    class="flex-1 flex flex-col px-6 pt-24 pb-24 overflow-y-auto h-full relative z-10 overscroll-contain"
+    data-lenis-prevent
   >
     <nav class="flex flex-col w-full justify-center flex-1">
       <ul class="flex flex-col gap-4">
@@ -88,9 +89,11 @@ const { links } = Astro.props;
           >
           <div class="flex gap-6 mt-1">
             <a
-              href="#"
-              class="text-gray-900 dark:text-white hover:text-yellow-600 transition-colors transition-transform hover:-translate-y-1 duration-300"
+              href="https://www.instagram.com/eliasx.2/"
+              class="text-gray-900 dark:text-white hover:text-yellow-600 transition-colors hover:-translate-y-1 duration-300"
               aria-label="Síguenos en Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 width="24"
@@ -101,9 +104,12 @@ const { links } = Astro.props;
                 <use href="/estudio-capilar-aurora-Sprite.svg#instagram"></use>
               </svg>
             </a>
+
             <a
-              href="#"
-              class="text-gray-900 dark:text-white hover:text-yellow-600 transition-colors transition-transform hover:-translate-y-1 duration-300"
+              href="https://www.tiktok.com/@xliazzzx"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-900 dark:text-white hover:text-yellow-600 transition-colors hover:-translate-y-1 duration-300"
               aria-label="Síguenos en TikTok"
             >
               <svg
@@ -115,10 +121,13 @@ const { links } = Astro.props;
                 <use href="/estudio-capilar-aurora-Sprite.svg#tiktok"></use>
               </svg>
             </a>
+
             <a
-              href="#"
-              class="text-gray-900 dark:text-white hover:text-yellow-600 transition-colors transition-transform hover:-translate-y-1 duration-300"
+              href="https://wa.me/5491135726318?text=Hola!%20Quiero%20info%20sobre%20mi%20página%20web"
+              class="text-gray-900 dark:text-white hover:text-yellow-600 transition-colors hover:-translate-y-1 duration-300"
               aria-label="Contáctanos por WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 width="24"
