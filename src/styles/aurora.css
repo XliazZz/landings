@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --font-aurora-title: "Tenor Sans", sans-serif;
+  
+  --font-aurora-body: "Manrope", sans-serif;
+  
+  --color-primary: #ca8a04; 
+}
+
+::selection {
+  background-color: #ca8a04;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ca8a04;
+  border-radius: 10px;
+}

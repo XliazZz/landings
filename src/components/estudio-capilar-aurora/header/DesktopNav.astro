@@ -1,0 +1,63 @@
+---
+interface Props {
+  links: { label: string; href: string }[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav
+  class="hidden md:flex items-center gap-10"
+  aria-label="Navegación principal"
+>
+  <ul class="flex items-center gap-8">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="group/link relative py-2 text-sm font-medium tracking-wide transition-colors duration-300 ease-out
+                   text-white/90 hover:text-white
+                   group-data-[scrolled=true]/header:text-gray-600 group-data-[scrolled=true]/header:hover:text-gray-900
+                   dark:group-data-[scrolled=true]/header:text-gray-100 dark:group-data-[scrolled=true]/header:hover:text-gray-200"
+          >
+            {link.label}
+            <span
+              class="absolute bottom-0 left-0 w-full h-px bg-yellow-600 
+                     transform scale-x-0 origin-right transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
+                     group-hover/link:scale-x-100 group-hover/link:origin-left"
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a
+    href="#contacto"
+    class="relative group/btn overflow-hidden rounded-full px-7 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-300
+           border border-white/20 bg-white/10 text-white backdrop-blur-sm
+           hover:bg-white hover:text-gray-900 hover:border-white
+           group-data-[scrolled=true]/header:bg-gray-900 dark:group-data-[scrolled=true]/header:bg-gray-500
+           group-data-[scrolled=true]/header:text-white
+           group-data-[scrolled=true]/header:border-gray-900 dark:group-data-[scrolled=true]/header:border-gray-500
+           group-data-[scrolled=true]/header:hover:bg-yellow-600
+           group-data-[scrolled=true]/header:hover:border-yellow-600
+           group-data-[scrolled=true]/header:hover:text-white"
+  >
+    <span
+      class="absolute inset-0 w-full h-full bg-white transform scale-x-0 origin-left group-hover/btn:scale-x-100 transition-transform duration-300 ease-out -z-10 group-data-[scrolled=true]/header:hidden"
+    ></span>
+
+    <span class="relative z-10 flex items-center gap-2">
+      Reservar
+      <span
+        class="w-1.5 h-1.5 rounded-full transition-colors duration-300
+               bg-green-500
+               group-hover/btn:bg-green-500
+               group-data-[scrolled=true]/header:bg-green-500
+               group-data-[scrolled=true]/header:group-hover/btn:bg-white"
+      ></span>
+    </span>
+  </a>
+</nav>
