@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@theme {
+  /* AL ESCRIBIR ESTO: --font-aurora-sans
+     TAILWIND CREA ESTO: .font-aurora-sans
+  */
+  --font-aurora-sans: "Manrope", sans-serif;
+
+  /* AL ESCRIBIR ESTO: --font-aurora-serif
+     TAILWIND CREA ESTO: .font-aurora-serif
+  */
+  --font-aurora-serif: "Cormorant Garamond", serif;
+}

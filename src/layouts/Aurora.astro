@@ -1,0 +1,29 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/aurora.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+
+    <ClientRouter />
+  </head>
+
+  <body class="font-aurora-body text-gray-900 bg-white antialiased">
+    <slot />
+  </body>
+</html>

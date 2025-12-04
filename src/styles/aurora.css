@@ -1,0 +1,13 @@
+/* src/styles/aurora.css */
+@import "tailwindcss";
+
+@theme {
+  /* CAMBIO: Tenor Sans para títulos. Es moderna, sin serifa, y muy estética */
+  --font-aurora-title: "Tenor Sans", sans-serif;
+  
+  /* Manrope se queda para el texto porque se lee increíblemente bien */
+  --font-aurora-body: "Manrope", sans-serif;
+  
+  /* Colores (asegúrate de tenerlos aquí si los usas) */
+  --color-primary: #ca8a04; 
+}
