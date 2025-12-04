@@ -36,17 +36,10 @@ const { links } = Astro.props;
     href="#contacto"
     class="relative group/btn overflow-hidden rounded-full px-7 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-300
            border border-white/20 bg-white/10 text-white backdrop-blur-sm
-           
-           /* HOVER INICIAL (Header Transparente) */
            hover:bg-white hover:text-gray-900 hover:border-white
-           
-           /* ESTADO SCROLLED (Header Blanco) - AQUÍ ESTÁ EL CAMBIO CLAVE */
-           /* 1. Se vuelve NEGRO SÓLIDO para contrastar con el fondo blanco */
            group-data-[scrolled=true]/header:bg-gray-900
            group-data-[scrolled=true]/header:text-white
            group-data-[scrolled=true]/header:border-gray-900
-           
-           /* 2. HOVER CUANDO ESTÁ SCROLLED: Se vuelve DORADO (Primary) */
            group-data-[scrolled=true]/header:hover:bg-yellow-600
            group-data-[scrolled=true]/header:hover:border-yellow-600
            group-data-[scrolled=true]/header:hover:text-white"

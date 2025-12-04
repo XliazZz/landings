@@ -8,6 +8,7 @@ const links = [
   { label: "Servicios", href: "#servicios" },
   { label: "Nuestro Arte", href: "#portfolio" },
   { label: "Filosofía", href: "#filosofia" },
+  { label: "Contacto", href: "#contacto" },
 ];
 ---
 
@@ -40,7 +41,6 @@ const links = [
   const links = document.querySelectorAll(".mobile-link");
   const body = document.body;
 
-  // ... (tu lógica de scroll handleScroll se mantiene igual) ...
   const handleScroll = () => {
     if (!header) return;
 
@@ -61,11 +61,9 @@ const links = [
   const toggleMenu = () => {
     isOpen = !isOpen;
 
-    // 1. ESTADOS DE ACCESIBILIDAD
     btn?.setAttribute("aria-expanded", String(isOpen));
     btn?.setAttribute("data-state", isOpen ? "open" : "closed");
-    
-    // 2. NUEVO: CAMBIAR ESTADO EN EL HEADER PARA EL LOGO
+
     header?.setAttribute("data-menu-open", String(isOpen));
 
     if (isOpen) {
@@ -73,7 +71,6 @@ const links = [
       menu?.setAttribute("aria-hidden", "false");
       body.style.overflow = "hidden";
 
-      // Botón hamburguesa a negro
       const spans = btn?.querySelectorAll("span");
       spans?.forEach((span) => span.classList.add("!bg-gray-900"));
 
@@ -87,7 +84,6 @@ const links = [
       menu?.setAttribute("aria-hidden", "true");
       body.style.overflow = "";
 
-      // Botón hamburguesa vuelve a su color original (blanco o negro según scroll)
       const spans = btn?.querySelectorAll("span");
       spans?.forEach((span) => span.classList.remove("!bg-gray-900"));
 
