@@ -14,7 +14,7 @@ const { title, links } = Astro.props;
 
 <div>
   <h4
-    class="text-xs font-bold uppercase tracking-widest text-text-light dark:text-text-dark mb-6 opacity-80"
+    class="text-xs font-bold uppercase tracking-widest text-white dark:text-white mb-6 opacity-80"
   >
     {title}
   </h4>
@@ -27,17 +27,14 @@ const { title, links } = Astro.props;
             href={link.href}
             class="group/link flex items-center w-fit relative overflow-hidden py-1"
           >
-            {/* Contenedor del Texto y la Línea */}
             <span class="relative flex flex-col">
-              <span class="text-sm font-light tracking-wide text-gray/70 dark:text-text-dark/70 transition-all duration-300 ease-out group-hover/link:text-primary group-hover/link:translate-x-1">
+              <span class="text-sm font-light tracking-wide text-gray/70 dark:text-white/80 transition-all duration-300 ease-out group-hover/link:text-primary group-hover/link:translate-x-1">
                 {link.label}
               </span>
 
-              {/* LA LÍNEA MÁGICA: Crece desde la izquierda */}
               <span class="absolute bottom-0 left-0 w-full h-[1px] bg-primary transform scale-x-0 transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] origin-left group-hover/link:scale-x-100 group-hover/link:translate-x-1" />
             </span>
 
-            {/* Flecha Sutil: Se desliza y aparece */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-3 h-3 text-primary ml-2 opacity-0 -translate-x-4 transition-all duration-300 ease-out group-hover/link:opacity-100 group-hover/link:translate-x-0"

@@ -36,17 +36,17 @@ const itemsList = [
         </div>
 
         <div>
-          <h4 class="text-text-light dark:text-text-dark font-bold uppercase tracking-wider text-xs mb-1">
+          <h4 class="text-text-light dark:text-white font-bold uppercase tracking-wider text-xs mb-1">
             {item.title}
           </h4>
 
           {item.title === "Visítanos" ? (
             <address
-              class="text-text-light/80 dark:text-text-dark/80 not-italic font-light leading-relaxed"
+              class="text-text-light/80 dark:text-white/80 not-italic font-light leading-relaxed"
               set:html={item.address}
             />
           ) : (
-            <div class="text-text-light/80 dark:text-text-dark/80 font-light leading-relaxed">
+            <div class="text-text-light/80 dark:text-white/80 font-light leading-relaxed">
               {item.email && (
                 <a
                   href={`mailto:${item.email}`}

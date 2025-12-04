@@ -18,7 +18,8 @@ const { links } = Astro.props;
             href={link.href}
             class="group/link relative py-2 text-sm font-medium tracking-wide transition-colors duration-300 ease-out
                    text-white/90 hover:text-white
-                   group-data-[scrolled=true]/header:text-gray-600 group-data-[scrolled=true]/header:hover:text-gray-900"
+                   group-data-[scrolled=true]/header:text-gray-600 group-data-[scrolled=true]/header:hover:text-gray-900
+                   dark:group-data-[scrolled=true]/header:text-gray-100 dark:group-data-[scrolled=true]/header:hover:text-gray-200"
           >
             {link.label}
             <span
@@ -37,9 +38,9 @@ const { links } = Astro.props;
     class="relative group/btn overflow-hidden rounded-full px-7 py-2.5 text-xs font-bold uppercase tracking-widest transition-all duration-300
            border border-white/20 bg-white/10 text-white backdrop-blur-sm
            hover:bg-white hover:text-gray-900 hover:border-white
-           group-data-[scrolled=true]/header:bg-gray-900
+           group-data-[scrolled=true]/header:bg-gray-900 dark:group-data-[scrolled=true]/header:bg-gray-500
            group-data-[scrolled=true]/header:text-white
-           group-data-[scrolled=true]/header:border-gray-900
+           group-data-[scrolled=true]/header:border-gray-900 dark:group-data-[scrolled=true]/header:border-gray-500
            group-data-[scrolled=true]/header:hover:bg-yellow-600
            group-data-[scrolled=true]/header:hover:border-yellow-600
            group-data-[scrolled=true]/header:hover:text-white"
