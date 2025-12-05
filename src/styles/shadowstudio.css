@@ -6,10 +6,10 @@
   --color-secondary: #D6296A;
   --color-tertiary: #5C0F2D;
 
-  --bg-primary: #111111;
-  --bg-secondary: #1A1A1A;
-  --bg-light-mode: #F5F5F5;
+  --color-primarybg: #111111;
+  --color-secondarybg: #1A1A1A;
+  --color-light-mode: #F5F5F5;
 
-  --aux-primary: #F2B3C2;
-  --aux-secondary: #E3A046;
+  --color-aux-primary: #F2B3C2;
+  --color-aux-secondary: #E3A046;
 }

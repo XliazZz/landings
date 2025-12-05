@@ -1,0 +1,138 @@
+---
+
+---
+
+<section
+  class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-zinc-950"
+>
+  <div class="absolute inset-0 w-full h-full z-0">
+    <img
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2rHJJMyeATBXA2wRoXo6iHWd0OEBzcvecVIZoECxquUOYGKQa1xvfvw-_03rKAAT2K_HYfZ285SsEJaUoWcbJEcYClJ0olMbfm2xse1UtBKLKUcyOLYCtzCzgKmeKjEIyMq_64OngYj62e-czW2Irs_CuowE_DP0vRnpX4_ji823TR9YTzv8iEop7g3ODQZspbS4aaaQrJFN6wdELSxZtbpeFHCi8PedHicphSkumJKFJk7An_fjb1-r8LV_d6pBhDI96WAPXzK-z"
+      alt="Interior sofisticado de Shadow Studio"
+      class="w-full h-full object-cover opacity-60 animate-slow-zoom"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-zinc-950/60"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-zinc-950/50 via-transparent to-zinc-950/50"
+    >
+    </div>
+  </div>
+
+  <div
+    class="relative z-10 flex flex-col items-center px-6 max-w-5xl text-center"
+  >
+    <span
+      class="hero-reveal opacity-0 translate-y-8 text-aux-secondary text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-6 border border-aux-secondary px-4 py-1.5 rounded-full backdrop-blur-md"
+    >
+      Ubicación. 2025 &bull; Buenos Aires
+    </span>
+
+    <h1
+      class="hero-reveal opacity-0 translate-y-8 delay-100 font-aurora-title text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white uppercase leading-[0.9] tracking-tight mb-6 drop-shadow-2xl"
+    >
+      Donde la piel <br />
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-b from-secondary to-primary/40 font-light italic"
+      >
+        se vuelve lienzo
+      </span>
+    </h1>
+
+    <p
+      class="hero-reveal opacity-0 translate-y-8 delay-200 font-aurora-body text-base md:text-lg text-zinc-300 font-light leading-relaxed max-w-2xl mx-auto mb-10 text-balance"
+    >
+      <strong class="text-white font-medium">Shadow Studio</strong> es un espacio
+      boutique especializado en arte corporal personalizado. Donde el diseño, la
+      precisión y la experiencia convergen para crear obras que perduran.
+    </p>
+
+    <div
+      class="hero-reveal opacity-0 translate-y-8 delay-300 flex flex-col sm:flex-row gap-5 w-full justify-center"
+    >
+      <a
+        href="#portfolio"
+        class="group relative flex items-center justify-center px-8 py-4 bg-secondary text-white overflow-hidden rounded-sm transition-all duration-300 hover:bg-white hover:text-black"
+      >
+        <span class="relative z-10 text-xs font-bold uppercase tracking-[0.2em]"
+          >Explorar Arte</span
+        >
+      </a>
+
+      <a
+        href="#artistas"
+        class="group relative flex items-center justify-center px-8 py-4 border border-white/20 text-white overflow-hidden rounded-sm transition-all duration-300 hover:border-white hover:bg-white/5 backdrop-blur-sm"
+      >
+        <span class="relative z-10 text-xs font-bold uppercase tracking-[0.2em]"
+          >Conocer Artistas</span
+        >
+      </a>
+    </div>
+  </div>
+
+  <a
+    href="#servicios"
+    class="hero-reveal delay-500 absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 group opacity-0 cursor-pointer z-20"
+  >
+    <span
+      class="text-[10px] uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-colors duration-300"
+    >
+      Descubrir
+    </span>
+    <div
+      class="w-[1px] h-12 bg-gradient-to-b from-white/0 via-white/50 to-white/0 overflow-hidden relative"
+    >
+      <div
+        class="absolute top-0 left-0 w-full h-full bg-secondary animate-drop"
+      >
+      </div>
+    </div>
+  </a>
+</section>
+
+<style>
+  @keyframes slow-zoom {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  .animate-slow-zoom {
+    animation: slow-zoom 20s infinite alternate ease-in-out;
+  }
+
+  @keyframes drop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+  .animate-drop {
+    animation: drop 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const reveals = document.querySelectorAll(".hero-reveal");
+
+    setTimeout(() => {
+      reveals.forEach((el) => {
+        el.classList.remove("opacity-0", "translate-y-8");
+        el.classList.add(
+          "opacity-100",
+          "translate-y-0",
+          "transition-all",
+          "duration-1000",
+          "ease-out"
+        );
+      });
+    }, 200);
+  });
+</script>

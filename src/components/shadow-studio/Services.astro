@@ -1,0 +1,41 @@
+---
+import ServicesHeader from "./services/ServicesHeader.astro";
+import CardServices from "./services/CardServices.astro";
+import { servicesData } from "../../data/shadow-studio/services";
+
+const services = servicesData;
+---
+
+<section
+  id="servicios"
+  class="relative py-24 md:py-32 bg-primarybg overflow-hidden"
+>
+  <div class="absolute inset-0 pointer-events-none">
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 blur-[150px] rounded-full opacity-60"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-aux-primary/5 blur-[120px] rounded-full opacity-40"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10 max-w-screen-2xl">
+    <ServicesHeader />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        services.map((service, index) => (
+          <CardServices
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+            link={service.link}
+            index={index}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
