@@ -1,0 +1,93 @@
+---
+import { artistsData } from "../../data/shadow-studio/artists";
+import ArtistHeader from "./artists/ArtistsHeader.astro";
+import ArtistCard from "./artists/ArtistCard.astro";
+import LogoIcon from "./LogoIcon.astro";
+---
+
+<section
+  id="artists-section"
+  class="relative w-full bg-secondarybg text-white py-24 md:py-36 overflow-hidden"
+>
+  <div
+    class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-aux-secondary/5 blur-[140px] rounded-full pointer-events-none mix-blend-screen"
+  >
+  </div>
+
+  <div
+    class="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+  >
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10 observer-container">
+    <ArtistHeader />
+
+    <div
+      class="grid grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 observer-container"
+    >
+      {
+        artistsData.map((artist, index) => (
+          <ArtistCard artist={artist} index={index} />
+        ))
+      }
+    </div>
+
+    <div class="mt-14 md:mt-24 text-center reveal-footer opacity-0">
+      <div class="inline-flex flex-col items-center justify-center">
+        <span class="text-2xl mb-2 opacity-80 w-6 h-6">
+          <LogoIcon class="w-full h-full text-aux-secondary" />
+        </span>
+        <p class="text-gray-400 font-light text-lg max-w-lg italic font-serif">
+          "Transformamos tu historia en arte permanente."
+        </p>
+        <span
+          class="text-[10px] font-bold tracking-[0.3em] text-white/30 uppercase mt-4"
+        >
+          Shadow Studio Est. 2025
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reveal-footer {
+    transition:
+      opacity 1s ease,
+      transform 1s ease;
+    transform: translateY(20px);
+    transition-delay: 2.5s;
+  }
+  .is-visible .reveal-footer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", initObserver);
+  document.addEventListener("DOMContentLoaded", initObserver);
+
+  function initObserver() {
+    const section = document.getElementById("artists-section");
+    if (!section) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          section.classList.add("is-visible");
+          observer.disconnect();
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(section);
+  }
+</script>

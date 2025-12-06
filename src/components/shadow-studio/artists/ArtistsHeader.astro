@@ -1,0 +1,142 @@
+---
+---
+
+<header
+  class="mb-12 sm:mb-20 md:mb-28 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/5 pb-10"
+>
+  <div class="max-w-3xl">
+    <div class="reveal-text flex items-center gap-3 mb-6" style="--delay: 0ms">
+      <span class="h-[1px] w-8 bg-aux-secondary"></span>
+      <span
+        class="text-xs font-bold tracking-[0.25em] uppercase text-aux-secondary"
+      >
+        El Equipo
+      </span>
+    </div>
+
+    <div class="overflow-hidden leading-[0.9]"> 
+      <h2
+        class="reveal-title text-5xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tighter text-white"
+        style="--delay: 150ms"
+      >
+        Maestros de <br />
+      </h2>
+    </div>
+    
+    <div class="overflow-hidden pb-2 leading-[0.9]">
+      <h2
+        class="reveal-title text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter"
+        style="--delay: 300ms"
+      >
+        <span class="ink-gradient">
+          la Tinta
+        </span>
+      </h2>
+    </div>
+
+    <p
+      class="reveal-text mt-8 text-base md:text-xl text-gray-400 font-light max-w-xl leading-relaxed"
+      style="--delay: 500ms"
+    >
+      No solo tatuamos, creamos legado. Cada artista aporta una visión técnica
+      única, fusionando tradición y vanguardia en cada trazo.
+    </p>
+  </div>
+
+  <div class="hidden md:block pb-2 reveal-button" style="--delay: 700ms">
+    <a
+      href="#booking"
+      class="group relative flex items-center gap-4 px-6 py-3 text-xs font-bold tracking-[0.2em] text-white uppercase overflow-hidden rounded-sm transition-all duration-500 hover:text-aux-secondary"
+    >
+      <div
+        class="absolute inset-0 bg-white/5 backdrop-blur-sm border border-white/10 transition-colors duration-500 group-hover:border-aux-secondary/50 group-hover:bg-white/10"
+      >
+      </div>
+
+      <span class="relative z-10">Agendar Cita</span>
+
+      <span
+        class="relative z-10 flex items-center justify-center w-5 h-5 rounded-full border border-white/20 group-hover:border-aux-secondary group-hover:bg-aux-secondary group-hover:text-primarybg transition-all duration-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-3 h-3 -rotate-45 group-hover:rotate-0 transition-transform duration-500"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+        </svg>
+      </span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .ink-gradient {
+    background: linear-gradient(
+      110deg,
+      var(--color-primary) 0%,
+      var(--color-secondary) 40%,
+      var(--color-aux-primary) 50%, 
+      var(--color-secondary) 60%,
+      var(--color-primary) 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shine 5s linear infinite;
+  }
+
+  @keyframes shine {
+    to { background-position: -200% center; }
+  }
+
+  .reveal-text {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--delay);
+    will-change: transform, opacity, filter;
+  }
+
+  :global(.is-visible) .reveal-text {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  .reveal-button {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--delay);
+    will-change: transform, opacity;
+  }
+
+  :global(.is-visible) .reveal-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-title {
+    display: block; 
+    transform: translateY(110%) rotate(2deg); 
+    opacity: 0; 
+    transform-origin: left bottom;
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+    transition-delay: var(--delay);
+    will-change: transform, opacity;
+  }
+
+  :global(.is-visible) .reveal-title {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+</style>
