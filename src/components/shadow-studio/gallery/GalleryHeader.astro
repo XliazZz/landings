@@ -1,0 +1,79 @@
+---
+import { categories } from "../../../data/shadow-studio/gallery";
+import GalleryFilter from "./GalleryFilter.astro";
+---
+
+<header
+  class="relative flex flex-col items-center justify-center text-center mb-10 md:mb-24"
+>
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full select-none pointer-events-none overflow-hidden flex justify-center items-center opacity-10 z-0"
+    aria-hidden="true"
+  >
+    <span
+      class="text-[12rem] md:text-[20rem] font-black uppercase tracking-widest text-primary leading-none whitespace-nowrap animate-pulse-slow"
+    >
+      SHADOW
+    </span>
+  </div>
+
+  <div
+    class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700 ease-out"
+  >
+    <span
+      class="inline-block py-1 px-4 border border-aux-secondary/20 rounded-full bg-primarybg/50 backdrop-blur-sm text-aux-secondary text-[10px] font-bold tracking-[0.3em] uppercase mb-4 shadow-[0_0_15px_-5px_rgba(227,160,70,0.3)]"
+    >
+      Colección Exclusiva
+    </span>
+  </div>
+
+  <h2
+    class="animate-on-scroll opacity-0 scale-95 transition-all duration-1000 ease-out delay-100 md:mb-6"
+  >
+    <span
+      class="block text-4xl md:text-5xl font-bold text-white tracking-widest mb-1"
+    >
+      EL ARTE DE
+    </span>
+    <span
+      class="block text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.85]"
+    >
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-b from-secondary via-primary to-[#4a0a22] filter drop-shadow-2xl"
+      >
+        ETERNIZAR
+      </span>
+    </span>
+  </h2>
+
+  <p
+    class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-1000 ease-out delay-200 mt-2 text-gray-400 font-light text-base md:text-xl max-w-xl leading-relaxed mx-auto"
+  >
+    Cada pieza es un diálogo entre la piel y la aguja. Explora nuestra selección
+    curada de obras maestras recientes.
+  </p>
+
+  <div
+    class="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out delay-300 mt-12"
+  >
+    <GalleryFilter categories={categories} />
+  </div>
+</header>
+
+<style>
+  @keyframes pulseSlow {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.15;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 12s ease-in-out infinite;
+  }
+</style>

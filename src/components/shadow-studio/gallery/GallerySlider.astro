@@ -1,5 +1,5 @@
 ---
-import 'keen-slider/keen-slider.min.css';
+import "keen-slider/keen-slider.min.css";
 
 interface Props {
   items: Array<{
@@ -14,7 +14,7 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="relative group px-6 md:px-0 pb-8">
+<div class="relative group px-6 md:px-16 pb-16">
   <div
     id="keen-slider"
     class="keen-slider overflow-visible"
@@ -52,7 +52,7 @@ const { items } = Astro.props;
   </div>
 
   <div
-    class="absolute bottom-0 left-6 right-6 md:left-0 md:right-0 h-[2px] bg-white/10 rounded-full overflow-hidden mt-4"
+    class="absolute bottom-6 left-6 right-6 md:left-0 md:right-0 h-[2px] bg-white/10 rounded-full overflow-hidden mt-4"
   >
     <div
       id="progress-bar"
@@ -61,9 +61,50 @@ const { items } = Astro.props;
     </div>
   </div>
 
+  <div
+    id="swipe-hint"
+    class="absolute bottom-0 left-0 right-0 text-center pt-4 animate-on-scroll opacity-0 translate-y-2 transition-all duration-1000 delay-700"
+  >
+    <div class="inline-flex items-center justify-center gap-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-4 h-4 text-white/50 opacity-0 animate-shake-x-reverse transition-opacity"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+      </svg>
+
+      <span
+        class="text-[10px] font-medium uppercase tracking-wider text-white/50"
+      >
+        Desliza para explorar
+      </span>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="w-4 h-4 text-aux-secondary animate-shake-x transition-opacity"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+      </svg>
+    </div>
+  </div>
+
   <button
     id="arrow-left"
-    class="hidden md:flex absolute top-1/2 -left-12 -translate-y-1/2 w-10 h-10 items-center justify-center border border-white/10 rounded-full text-white hover:bg-white/10 hover:border-aux-secondary transition-all duration-300 z-10"
+    class="hidden md:flex absolute top-1/2 -left-12 md:left-0 -translate-y-1/2 w-10 h-10 items-center justify-center border border-white/10 rounded-full text-white hover:bg-white/10 hover:border-aux-secondary transition-all duration-300 z-20"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +122,7 @@ const { items } = Astro.props;
 
   <button
     id="arrow-right"
-    class="hidden md:flex absolute top-1/2 -right-12 -translate-y-1/2 w-10 h-10 items-center justify-center border border-white/10 rounded-full text-white hover:bg-white/10 hover:border-aux-secondary transition-all duration-300 z-10"
+    class="hidden md:flex absolute top-1/2 -right-12 md:right-0 -translate-y-1/2 w-10 h-10 items-center justify-center border border-white/10 rounded-full text-white hover:bg-white/10 hover:border-aux-secondary transition-all duration-300 z-20"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -99,132 +140,9 @@ const { items } = Astro.props;
 </div>
 
 <script>
-  import KeenSlider from "keen-slider";
-
-  let sliderInstance;
-  let allSlidesCache = [];
-  const sliderElement = document.getElementById("keen-slider");
-  const progressBar = document.getElementById("progress-bar");
-  const leftArrow = document.getElementById("arrow-left");
-  const rightArrow = document.getElementById("arrow-right");
-
-  function initSlider() {
-    if (!sliderElement) return;
-
-    if (allSlidesCache.length === 0) {
-      allSlidesCache = Array.from(sliderElement.children);
-    }
-
-    sliderInstance = new KeenSlider(sliderElement, {
-      loop: false,
-      mode: "snap",
-      slides: {
-        perView: 1.2,
-        spacing: 16,
-      },
-      breakpoints: {
-        "(min-width: 640px)": {
-          slides: { perView: 2.2, spacing: 24 },
-        },
-        "(min-width: 1024px)": {
-          slides: { perView: 3.5, spacing: 32 },
-        },
-      },
-      created(s) {
-        sliderElement.style.opacity = "1";
-        updateNavigation(s);
-        updateProgress(s);
-      },
-      slideChanged(s) {
-        updateNavigation(s);
-      },
-      detailsChanged(s) {
-        updateProgress(s);
-        // IMPORTANTE: Chequear navegación en tiempo real para que desaparezca suavemente al llegar
-        updateNavigation(s); 
-      },
-    });
-
-    const newLeft = leftArrow.cloneNode(true);
-    const newRight = rightArrow.cloneNode(true);
-    leftArrow.parentNode.replaceChild(newLeft, leftArrow);
-    rightArrow.parentNode.replaceChild(newRight, rightArrow);
-
-    const currentLeft = document.getElementById("arrow-left");
-    const currentRight = document.getElementById("arrow-right");
-
-    currentLeft?.addEventListener("click", () => sliderInstance.prev());
-    currentRight?.addEventListener("click", () => sliderInstance.next());
-  }
-
-  document.addEventListener("filter-gallery", (e) => {
-    const category = e.detail.category;
-    
-    if (!sliderInstance || !sliderElement) return;
-
-    sliderInstance.destroy();
-    sliderElement.innerHTML = '';
-
-    const filteredSlides = allSlidesCache.filter(slide => {
-      const slideCat = slide.getAttribute('data-category');
-      return category === 'all' || slideCat === category;
-    });
-
-    if (filteredSlides.length > 0) {
-      filteredSlides.forEach(slide => sliderElement.appendChild(slide));
-      
-      if(progressBar) {
-        progressBar.style.width = '0%';
-        progressBar.style.transition = 'none';
-        setTimeout(() => { progressBar.style.transition = ''; }, 50);
-      }
-
-      initSlider();
-    }
-  });
-
-  function updateProgress(instance) {
-    if (!progressBar) return;
-    const progress = instance.track.details.progress;
-    const width = Math.min(Math.max(progress * 100, 0), 100);
-    progressBar.style.width = `${width}%`;
-  }
-
-  // --- FUNCIÓN CORREGIDA ---
-  function updateNavigation(instance) {
-    // Usamos el progreso (0 a 1) en lugar del índice
-    const progress = instance.track.details.progress;
-    
-    const currentLeft = document.getElementById("arrow-left");
-    const currentRight = document.getElementById("arrow-right");
-
-    if (currentLeft) {
-      // Si estamos al principio (0%)
-      // Usamos <= 0.01 para cubrir márgenes de error pequeños
-      if (progress <= 0.01) {
-         currentLeft.classList.add('opacity-0', 'pointer-events-none');
-      } else {
-         currentLeft.classList.remove('opacity-0', 'pointer-events-none');
-      }
-    }
-    
-    if (currentRight) {
-      // Si estamos al final (100% o casi)
-      if (progress >= 0.99) {
-         currentRight.classList.add('opacity-0', 'pointer-events-none');
-      } else {
-         currentRight.classList.remove('opacity-0', 'pointer-events-none');
-      }
-    }
-  }
+  import { initSlider } from "./gallerySlider.js";
 
   initSlider();
-
-  document.addEventListener("astro:page-load", () => {
-    allSlidesCache = [];
-    if (sliderInstance) sliderInstance.destroy();
-    initSlider();
-  });
 </script>
 
 <style>
@@ -233,5 +151,28 @@ const { items } = Astro.props;
   }
   .keen-slider:active {
     cursor: grabbing;
+  }
+  @keyframes shakeX {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(3px);
+    }
+    50% {
+      transform: translateX(-3px);
+    }
+    75% {
+      transform: translateX(3px);
+    }
+  }
+
+  .animate-shake-x {
+    animation: shakeX 1.5s ease-in-out infinite;
+  }
+
+  .animate-shake-x-reverse {
+    animation: shakeX 1.5s ease-in-out infinite reverse;
   }
 </style>
