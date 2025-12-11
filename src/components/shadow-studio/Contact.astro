@@ -2,34 +2,32 @@
 import ContactInfo from "./contact/ContactInfo.astro";
 import ContactMap from "./contact/ContactMap.astro";
 
-/* Datos centralizados */
 const studioInfo = {
   address: "Av. Corrientes 1234, Buenos Aires",
-  mapQuery: "Av.+Corrientes+1234,+C1043+CABA", 
+  mapQuery: "Av.+Corrientes+1234,+C1043+CABA",
   hours: [
     { day: "Lun - Vie", time: "11:00 — 20:00" },
     { day: "Sábado", time: "12:00 — 18:00" },
     { day: "Domingo", time: "Cerrado" },
   ],
-  email: "citas@shadowstudio.com",
-  phone: "+54 9 11 1234 5678",
-  mapLink: "https://goo.gl/maps/tu-link-real"
+  email: "eliasdev1912@gmail.com",
+  phone: "+54 9 11 3572 6318",
+  mapLink: "https://goo.gl/maps/tu-link-real",
 };
 ---
 
-<section id="contact" class="relative bg-primarybg w-full overflow-hidden border-t border-white/5">
-  
+<section
+  id="contact"
+  class="relative bg-primarybg w-full overflow-hidden border-t border-white/5"
+>
   <div class="flex flex-col lg:flex-row min-h-[800px]">
-    
     <ContactInfo studioInfo={studioInfo} />
 
     <ContactMap mapQuery={studioInfo.mapQuery} />
-
   </div>
 </section>
 
 <script>
-  // Lógica de animación compartida
   const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -40,16 +38,18 @@ const studioInfo = {
     });
   }, observerOptions);
 
-  // Observamos elementos dentro de ContactInfo (que tienen la clase reveal-contact)
-  document.querySelectorAll(".reveal-contact").forEach((el) => observer.observe(el));
+  document
+    .querySelectorAll(".reveal-contact")
+    .forEach((el) => observer.observe(el));
 </script>
 
 <style is:global>
-  /* Definimos la animación aquí o en ContactInfo, pero global asegura que funcione */
   .reveal-contact {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--delay, 0ms);
   }
   .reveal-contact.is-visible {

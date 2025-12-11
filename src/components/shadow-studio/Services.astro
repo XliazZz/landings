@@ -8,7 +8,7 @@ const services = servicesData;
 
 <section
   id="services"
-  class="relative py-24 md:py-32 bg-primarybg overflow-hidden"
+  class="relative py-16 md:py-32 bg-primarybg overflow-hidden"
 >
   <div class="absolute inset-0 pointer-events-none">
     <div
@@ -24,7 +24,7 @@ const services = servicesData;
   <div class="container mx-auto px-6 relative z-10 max-w-screen-2xl">
     <ServicesHeader />
 
-    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
       {
         services.map((service, index) => (
           <CardServices

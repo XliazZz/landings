@@ -1,8 +1,9 @@
 ---
+
 ---
 
 <header
-  class="mb-12 sm:mb-20 md:mb-28 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/5 pb-10"
+  class="mb-12 sm:mb-20 md:mb-12 lg:mb-28 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/5 pb-10"
 >
   <div class="max-w-3xl">
     <div class="reveal-text flex items-center gap-3 mb-6" style="--delay: 0ms">
@@ -14,23 +15,21 @@
       </span>
     </div>
 
-    <div class="overflow-hidden leading-[0.9]"> 
+    <div class="overflow-hidden leading-[0.9]">
       <h2
-        class="reveal-title text-5xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tighter text-white"
+        class="reveal-title text-5xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tighter text-white"
         style="--delay: 150ms"
       >
         Maestros de <br />
       </h2>
     </div>
-    
+
     <div class="overflow-hidden pb-2 leading-[0.9]">
       <h2
-        class="reveal-title text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tighter"
+        class="reveal-title text-5xl md:text-6xllg:text-7xl font-bold uppercase tracking-tighter"
         style="--delay: 300ms"
       >
-        <span class="ink-gradient">
-          la Tinta
-        </span>
+        <span class="ink-gradient"> la Tinta </span>
       </h2>
     </div>
 
@@ -43,7 +42,7 @@
     </p>
   </div>
 
-  <div class="hidden md:block pb-2 reveal-button" style="--delay: 700ms">
+  <div class="hidden lg:block pb-2 reveal-button" style="--delay: 700ms">
     <a
       href="#booking"
       class="group relative flex items-center gap-4 px-6 py-3 text-xs font-bold tracking-[0.2em] text-white uppercase overflow-hidden rounded-sm transition-all duration-500 hover:text-aux-secondary"
@@ -82,7 +81,7 @@
       110deg,
       var(--color-primary) 0%,
       var(--color-secondary) 40%,
-      var(--color-aux-primary) 50%, 
+      var(--color-aux-primary) 50%,
       var(--color-secondary) 60%,
       var(--color-primary) 100%
     );
@@ -94,7 +93,9 @@
   }
 
   @keyframes shine {
-    to { background-position: -200% center; }
+    to {
+      background-position: -200% center;
+    }
   }
 
   .reveal-text {
@@ -126,11 +127,13 @@
   }
 
   .reveal-title {
-    display: block; 
-    transform: translateY(110%) rotate(2deg); 
-    opacity: 0; 
+    display: block;
+    transform: translateY(110%) rotate(2deg);
+    opacity: 0;
     transform-origin: left bottom;
-    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+    transition:
+      transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+      opacity 0.5s ease;
     transition-delay: var(--delay);
     will-change: transform, opacity;
   }

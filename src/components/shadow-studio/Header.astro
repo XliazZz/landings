@@ -42,7 +42,7 @@ const navLinks = [
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-10">
+      <nav class="hidden md:flex items-center gap-5 lg:gap-10">
         {
           navLinks.map((link) => (
             <a
@@ -63,7 +63,7 @@ const navLinks = [
 
       <div class="flex items-center gap-4">
         <button
-          class="hidden md:flex relative items-center justify-center h-10 px-6 overflow-hidden text-xs font-black tracking-[0.2em] uppercase transition-all duration-300 rounded-lg group cursor-pointer bg-primary text-white border border-primary hover:border-secondary hover:text-white active:scale-95"
+          class="hidden md:flex relative items-center justify-center h-10 px-2 lg:px-6 overflow-hidden text-xs font-black tracking-[0.2em] uppercase transition-all duration-300 rounded-lg group cursor-pointer bg-primary text-white border border-primary hover:border-secondary hover:text-white active:scale-95"
         >
           <span
             class="absolute inset-0 w-full h-full bg-secondary translate-y-full transition-transform duration-300 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0"
@@ -99,7 +99,6 @@ const navLinks = [
 </header>
 
 <script>
-
   const openBtn = document.getElementById("open-menu-btn");
 
   const closeBtn = document.getElementById("close-menu-btn");
@@ -125,7 +124,6 @@ const navLinks = [
   closeBtn?.addEventListener("click", closeMenu);
 
   window.addEventListener("close-mobile-menu", closeMenu);
-
 
   const header = document.getElementById("main-header");
 
@@ -165,4 +163,3 @@ const navLinks = [
 
   handleScroll();
 </script>
-
