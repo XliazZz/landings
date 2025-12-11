@@ -11,8 +11,10 @@ export interface SocialLink {
 
 export const links: FooterLink[] = [
   { name: "Inicio", href: "#hero" },
-  { name: "Artistas", href: "#artists" },
+  { name: "Servicios", href: "#services" },
+  { name: "Artistas", href: "#artists-section" },
   { name: "Galería", href: "#gallery" },
+  { name: "Testimonios", href: "#testimonials" },
   { name: "FAQ", href: "#faq" },
   { name: "Contacto", href: "#contact" },
 ];

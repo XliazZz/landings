@@ -31,6 +31,7 @@ const navLinks = links || defaultLinks;
         class="text-xs font-mono tracking-widest mr-2 uppercase group-hover:tracking-widest transition-all"
         >Cerrar</span
       >
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -100,6 +101,7 @@ const navLinks = links || defaultLinks;
             <use href="/social-sprite.svg#instagram"></use>
           </svg>
         </a>
+
         <a
           href="https://wa.me/5491135726318"
           target="_blank"
@@ -141,7 +143,9 @@ const navLinks = links || defaultLinks;
   links.forEach((link) => {
     link.addEventListener("click", () => {
       const event = new CustomEvent("close-mobile-menu");
+
       window.dispatchEvent(event);
     });
   });
 </script>
+
