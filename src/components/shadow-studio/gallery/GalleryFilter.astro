@@ -1,0 +1,51 @@
+---
+export interface Category {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  categories: Category[];
+}
+
+const { categories } = Astro.props;
+---
+
+<nav
+  class="relative inline-flex flex-wrap items-center justify-center py-3 md:p-1.5 md:rounded-full rounded-lg bg-secondarybg/80 md:backdrop-blur-md md:border md:border-white/5 md:shadow-2xl z-0 gallery-filter-nav"
+>
+  <div
+    id="filter-pill"
+    class="absolute top-1.5 bottom-1.5 left-0 rounded-full bg-aux-secondary shadow-[0_0_15px_-3px_rgba(227,160,70,0.4)] transition-all duration-500 cubic-bezier(0.25, 0.8, 0.25, 1) -z-10 hidden md:block"
+    style="width: 0; opacity: 0;"
+  >
+  </div>
+
+  {
+    categories.map((cat, index) => (
+      <button
+        data-filter={cat.id}
+        class={`filter-btn relative px-3 md:px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-300 z-10
+      ${
+        index === 0
+          ? "text-aux-secondary md:text-primarybg active-filter cursor-default"
+          : "text-gray-400 hover:text-white cursor-pointer"
+      }`}
+      >
+        {cat.label}
+      </button>
+    ))
+  }
+</nav>
+
+<script>
+  import { setupGalleryFilter } from "./gallery-filter.js";
+
+  function init() {
+    const navs = document.querySelectorAll(".gallery-filter-nav");
+    navs.forEach((nav) => setupGalleryFilter(nav));
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+</script>

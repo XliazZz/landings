@@ -1,0 +1,94 @@
+---
+import { galleryItems } from "../../data/shadow-studio/gallery";
+import GallerySlider from "./gallery/GallerySlider.astro";
+import GalleryHeader from "./gallery/GalleryHeader.astro";
+import Lightbox from "./gallery/Lightbox.astro";
+---
+
+<section
+  id="gallery"
+  class="relative w-full bg-primarybg py-16 lg:pt-36 overflow-hidden"
+>
+  <div
+    class="absolute inset-0 opacity-[0.02] pointer-events-none"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+  >
+  </div>
+  <div
+    class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none"
+  >
+  </div>
+
+  <div class="container mx-auto w-full max-w-screen-2xl px-6 relative z-10">
+    <GalleryHeader />
+
+    <div
+      class="relative w-full md:px-0 animate-fade-in-up min-h-[400px] lg:min-h-[500px]"
+    >
+      <GallerySlider items={galleryItems} />
+    </div>
+
+    <div id="no-results" class="hidden py-32 text-center">
+      <div
+        class="inline-block p-4 rounded-full bg-secondarybg border border-white/5 mb-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 text-gray-500"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          ></path></svg
+        >
+      </div>
+      <p class="text-gray-400 text-sm font-light tracking-wide">
+        No encontramos piezas en esta categoría por el momento.
+      </p>
+    </div>
+  </div>
+
+  <Lightbox />
+</section>
+
+<script is:inline>
+  const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove(
+          "opacity-0",
+          "translate-y-8",
+          "translate-x-[-20px]"
+        );
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document
+    .querySelectorAll(".animate-on-scroll")
+    .forEach((el) => observer.observe(el));
+</script>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+</style>

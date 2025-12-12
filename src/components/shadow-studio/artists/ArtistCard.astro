@@ -1,0 +1,155 @@
+---
+interface Props {
+  artist: {
+    name: string;
+    role: string;
+    tag: string;
+    image: string;
+  };
+  index: number;
+}
+
+const { artist, index } = Astro.props;
+
+const baseDelay = 600;
+const staggerDelay = 400;
+const cardDelay = `${baseDelay + index * staggerDelay}ms`;
+---
+
+<article
+  class="reveal-card group relative h-full w-full cursor-pointer"
+  style={`--delay: ${cardDelay};`}
+>
+  <div
+    class="relative w-full aspect-[3/4] overflow-hidden rounded-sm bg-primarybg shadow-2xl transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(155,23,72,0.4)]"
+  >
+    <img
+      src={artist.image}
+      alt={`${artist.name} artista`}
+      loading="lazy"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+    />
+
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-primarybg via-primarybg/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-80"
+    >
+    </div>
+
+    <div
+      class="badge-reveal absolute top-2 right-2 md:right-4 md:top-4 z-20 overflow-hidden rounded-sm"
+    >
+      <div
+        class="absolute inset-0 bg-secondarybg/50 sm:bg-secondarybg/80 backdrop-blur-md"
+      >
+      </div>
+      <span
+        class="relative z-10 block px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white border border-white/10"
+      >
+        {artist.tag}
+      </span>
+    </div>
+
+    <div
+      class="info-reveal absolute bottom-0 left-0 w-full md:p-6 p-2 pb-4 z-20 transform transition-transform duration-500 ease-out group-hover:translate-y-0 translate-y-2"
+    >
+      <div
+        class="w-8 h-[2px] bg-aux-secondary mb-4 transition-all duration-500 group-hover:w-16 hidden md:block"
+      >
+      </div>
+
+      <h3
+        class="text-sm sm:text-3xl font-bold text-white uppercase tracking-tight mb-1 group-hover:text-aux-primary transition-colors duration-300"
+      >
+        {artist.name}
+      </h3>
+      <p
+        class="text-gray-400 text-xs md:text-sm font-medium tracking-wide group-hover:text-white transition-colors duration-300"
+      >
+        {artist.role}
+      </p>
+
+      <div
+        class="md:mt-6 mt-2 transition-all duration-500 delay-75
+               opacity-100 translate-y-0
+               lg:opacity-0 lg:translate-y-4
+               lg:group-hover:opacity-100 lg:group-hover:translate-y-0"
+      >
+        <span
+          class="inline-flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-aux-secondary hover:text-white transition-colors"
+        >
+          Ver Portafolio
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3 w-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <div
+      class="absolute inset-0 border border-white/10 rounded-sm transition-colors duration-500 group-hover:border-primary/40 pointer-events-none"
+    >
+    </div>
+  </div>
+</article>
+
+<style>
+  .reveal-card {
+    opacity: 0;
+    transform: scale(0.94) translateY(60px);
+    filter: blur(10px);
+    transition:
+      opacity 1.4s ease,
+      transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.6s ease;
+    transition-delay: var(--delay);
+    will-change: transform, opacity, filter;
+  }
+
+  :global(.is-visible) .reveal-card {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+
+  .info-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 1s ease,
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--delay) + 300ms);
+  }
+
+  :global(.is-visible) .info-reveal {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+
+  :global(.is-visible) .reveal-card:hover .info-reveal {
+    transform: translateY(0);
+  }
+
+  .badge-reveal {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      opacity 1s ease,
+      transform 1s ease;
+    transition-delay: calc(var(--delay) + 400ms);
+  }
+
+  :global(.is-visible) .badge-reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

@@ -1,0 +1,117 @@
+---
+import { links, socials } from "../../data/shadow-studio/footer";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="relative bg-secondarybg pt-20 overflow-hidden border-t border-white/5"
+>
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+      <div class="md:col-span-5 lg:col-span-4">
+        <a
+          href="#"
+          class="inline-block mb-6 text-2xl font-black text-white tracking-tighter"
+        >
+          SHADOW<span class="text-aux-secondary">.</span>
+        </a>
+        <p class="text-gray-400 font-light text-sm leading-relaxed max-w-sm">
+          Transformando historias personales en arte permanente. Un espacio
+          donde la técnica tradicional se encuentra con la visión contemporánea.
+        </p>
+
+        <div class="flex gap-4 mt-8">
+          {
+            socials.map((social) => (
+              <a
+                href={social.href}
+                class="w-10 h-10 flex items-center justify-center rounded-full border border-white/10 text-white/60 hover:text-aux-secondary hover:border-aux-secondary hover:bg-aux-secondary/10 transition-all duration-300"
+                aria-label={social.name}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 19">
+                  <use href={`./social-sprite.svg#${social.icon}`} />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="md:col-span-3 lg:col-span-2 md:col-start-7 lg:col-start-7">
+        <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-6">
+          Explorar
+        </h4>
+        <ul class="space-y-4">
+          {
+            links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-gray-400 font-light text-sm hover:text-aux-secondary transition-colors inline-block relative group"
+                >
+                  {link.name}
+                  <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-aux-secondary transition-all duration-300 group-hover:w-full" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="md:col-span-3 lg:col-span-3 md:col-start-10 lg:col-start-10">
+        <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-6">
+          Legal
+        </h4>
+        <ul class="space-y-4">
+          <li>
+            <span
+              class="text-gray-400 font-light text-sm hover:text-white transition-colors cursor-pointer"
+            >
+              Política de Privacidad
+            </span>
+          </li>
+          <li>
+            <span
+              class="text-gray-400 font-light text-sm hover:text-white transition-colors cursor-pointer"
+            >
+              Términos y Condiciones
+            </span>
+          </li>
+          <li>
+            <span
+              class="text-gray-400 font-light text-sm hover:text-white transition-colors cursor-pointer"
+            >
+              Cuidados del Tatuaje
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h-px w-full bg-white/5"></div>
+
+    <div
+      class="flex flex-col md:flex-row justify-between items-center py-8 gap-4"
+    >
+      <p class="text-xs text-gray-500 font-mono">
+        © {currentYear} Shadow Studio. All rights reserved.
+      </p>
+      <p class="text-xs text-gray-600 font-mono">
+        Designed by <span class="text-gray-400">Elias Dev</span>
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="relative w-full overflow-hidden select-none pointer-events-none mt-10"
+  >
+    <h1
+      class="text-[15vw] md:text-[20vw] font-black text-white/5 leading-[0.75] text-center tracking-tighter translate-y-[20%]"
+    >
+      SHADOW
+    </h1>
+  </div>
+</footer>
