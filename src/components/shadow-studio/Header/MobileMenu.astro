@@ -1,0 +1,151 @@
+---
+const { links } = Astro.props;
+
+const defaultLinks = [
+  { label: "Portafolio", href: "#" },
+  { label: "Artistas", href: "#" },
+  { label: "El Studio", href: "#" },
+  { label: "Preguntas Frecuentes", href: "#" },
+];
+
+const navLinks = links || defaultLinks;
+---
+
+<div
+  id="mobile-menu-overlay"
+  class="group/menu fixed inset-0 z-50 flex flex-col bg-zinc-950 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] translate-x-full pointer-events-none data-[open=true]:translate-x-0 data-[open=true]:pointer-events-auto overflow-hidden"
+>
+  <div
+    class="absolute inset-0 pointer-events-none opacity-[0.03]"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+  >
+  </div>
+
+  <div class="flex items-center justify-end p-6 md:p-10 relative z-10">
+    <button
+      id="close-menu-btn"
+      class="group relative p-2 text-zinc-500 hover:text-white transition-colors duration-300"
+      aria-label="Cerrar menú"
+    >
+      <span
+        class="text-xs font-mono tracking-widest mr-2 uppercase group-hover:tracking-widest transition-all"
+        >Cerrar</span
+      >
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-8 h-8 inline-block text-secondary"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="flex flex-col justify-center flex-1 w-full px-8 relative z-10">
+    <ul class="flex flex-col w-full max-w-lg mx-auto">
+      {
+        navLinks.map((link, index) => (
+          <li class="overflow-hidden border-b border-white/10 last:border-none">
+            <a
+              href={link.href}
+              class="mobile-link group flex items-baseline justify-between py-6 w-full text-left transition-all duration-500 translate-y-full opacity-0 group-data-[open=true]/menu:translate-y-0 group-data-[open=true]/menu:opacity-100 hover:pl-4"
+              style={`transition-delay: ${100 + index * 200}ms`}
+            >
+              <span class="text-4xl sm:text-5xl font-serif italic text-zinc-300 group-hover:text-white transition-colors duration-300">
+                {link.label}
+              </span>
+
+              <span class="text-xs font-mono text-zinc-600 group-hover:text-primary transition-colors">
+                0{index + 1}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div
+    class="p-8 w-full relative z-10 bg-zinc-900/50 backdrop-blur-sm border-t border-white/5"
+  >
+    <div
+      class="flex flex-col items-center gap-8 translate-y-10 opacity-0 transition-all duration-700 group-data-[open=true]/menu:translate-y-0 group-data-[open=true]/menu:opacity-100 delay-500"
+    >
+      <button
+        class="w-full max-w-sm py-4 px-6 text-xs font-bold uppercase tracking-[0.25em] text-secondary border border-secondary/30 rounded-sm hover:bg-white hover:text-black hover:border-transparent transition-all duration-300 active:scale-95"
+      >
+        Reserva tu Cita
+      </button>
+
+      <div class="flex items-center gap-10">
+        <a
+          href="https://www.instagram.com/eliasx.2/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-500 hover:text-white transition-colors transform hover:-translate-y-1 duration-300"
+          aria-label="Instagram"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            class="fill-current"
+          >
+            <use href="/social-sprite.svg#instagram"></use>
+          </svg>
+        </a>
+
+        <a
+          href="https://wa.me/5491135726318"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-zinc-500 hover:text-white transition-colors transform hover:-translate-y-1 duration-300"
+          aria-label="WhatsApp"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            class="fill-current"
+          >
+            <use href="/social-sprite.svg#whatsapp"></use>
+          </svg>
+        </a>
+      </div>
+
+      <p class="text-[10px] text-zinc-600 font-mono tracking-widest uppercase">
+        Shadow Studio © 2025
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full overflow-hidden pointer-events-none select-none flex justify-center z-0"
+  >
+    <h1
+      class="text-[35vw] font-black text-white/5 leading-none translate-y-[20%] tracking-tighter"
+    >
+      SS
+    </h1>
+  </div>
+</div>
+
+<script>
+  const links = document.querySelectorAll(".mobile-link");
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      const event = new CustomEvent("close-mobile-menu");
+
+      window.dispatchEvent(event);
+    });
+  });
+</script>
+

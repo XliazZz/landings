@@ -1,0 +1,126 @@
+---
+---
+
+<div
+  id="preloader"
+  class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#111111] transition-all duration-700 ease-in-out"
+>
+  <div class="relative flex flex-col items-center">
+    <div class="mb-6 overflow-hidden">
+      <svg
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-24 h-24 text-[#9b1748] animate-breathing drop-shadow-[0_0_15px_rgba(155,23,72,0.5)]"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        ></path>
+      </svg>
+    </div>
+
+    <h1 class="overflow-hidden">
+      <span
+        class="block text-4xl font-bold uppercase tracking-[0.2em] text-[#F5F5F5] font-shadowstudio-heading animate-slide-up"
+      >
+        Shadow
+      </span>
+    </h1>
+    <span
+      class="mt-2 text-sm font-medium uppercase tracking-[0.4em] text-[#E3A046] font-shadowstudio-body animate-fade-in"
+      style="animation-delay: 200ms;"
+    >
+      Studio
+    </span>
+
+    <div class="mt-8 h-[2px] w-48 overflow-hidden bg-[#1A1A1A] rounded-full">
+      <div class="h-full w-full bg-[#9b1748] origin-left animate-progress"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Lógica del Preloader
+  const initPreloader = () => {
+    const preloader = document.getElementById("preloader");
+    const body = document.body;
+
+    if (preloader) {
+      // 1. Bloquear scroll al inicio
+      body.style.overflow = "hidden";
+
+      // 2. Función para ocultar
+      const hidePreloader = () => {
+        // Añadir clase para fade-out (opacity 0)
+        preloader.classList.add("opacity-0", "pointer-events-none");
+        
+        // 3. Restaurar scroll y remover del DOM después de la transición
+        setTimeout(() => {
+          body.style.overflow = "";
+          preloader.remove();
+        }, 700); // 700ms coincide con duration-700
+      };
+
+      // 4. Ejecutar cuando todo esté cargado
+      if (document.readyState === "complete") {
+        setTimeout(hidePreloader, 800); // Pequeño delay mínimo para que se vea la animación
+      } else {
+        window.addEventListener("load", () => {
+             setTimeout(hidePreloader, 800);
+        });
+      }
+    }
+  };
+
+  // Ejecutar en carga inicial
+  initPreloader();
+
+  // Si usas ViewTransitions de Astro, re-ejecutar lógica necesaria aquí
+  document.addEventListener("astro:after-swap", () => {
+    // Nota: Normalmente en navegación interna NO queremos preloader,
+    // pero si lo quisieras, aquí iría la lógica.
+    // Por defecto, ViewTransitions maneja la carga visualmente, 
+    // así que el preloader full-screen es mejor solo para la primera visita (hard refresh).
+  });
+</script>
+
+<style>
+  /* Animaciones personalizadas */
+  @keyframes breathing {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; letter-spacing: 0.8em; }
+    to { opacity: 1; letter-spacing: 0.4em; }
+  }
+
+  @keyframes progress {
+    0% { transform: scaleX(0); }
+    100% { transform: scaleX(1); }
+  }
+
+  .animate-breathing {
+    animation: breathing 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+  
+  .animate-progress {
+    animation: progress 1.5s ease-in-out forwards;
+  }
+</style>

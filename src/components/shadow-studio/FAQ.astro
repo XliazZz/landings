@@ -1,0 +1,103 @@
+---
+import { faqsData } from "../../data/shadow-studio/faqs";
+import FAQHeader from "./faq/FAQHeader.astro";
+---
+
+<section id="faq" class="relative bg-primarybg py-20 lg:py-36 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div
+      class="absolute inset-0 opacity-[0.02]"
+      style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+    >
+    </div>
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-secondarybg via-primarybg to-transparent opacity-50"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10 max-w-3xl">
+    <FAQHeader />
+
+    <div class="space-y-0 border-t border-white/10">
+      {
+        faqsData.map((faq, index) => (
+          <div
+            class="group faq-item border-b border-white/10 overflow-hidden reveal-element transition-colors duration-500 ease-out group-[.is-open]:border-aux-secondary/30"
+            style={`--delay: ${index * 100}ms`}
+          >
+            <button
+              class="faq-toggle w-full flex items-start justify-between py-8 text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-aux-secondary/50 rounded-sm"
+              aria-expanded="false"
+            >
+              <span class="text-xl lg:text-2xl font-medium text-gray-300 group-hover:text-white transition-colors duration-300 pr-8 leading-tight group-[.is-open]:text-white">
+                {faq.question}
+              </span>
+
+              <span class="relative flex-shrink-0 w-6 h-6 flex items-center justify-center mt-1">
+                <span class="absolute w-full h-[1px] bg-aux-secondary transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-[.is-open]:rotate-45" />
+                <span class="absolute w-full h-[1px] bg-aux-secondary rotate-90 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-[.is-open]:rotate-45" />
+              </span>
+            </button>
+
+            <div class="grid grid-rows-[0fr] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-[.is-open]:grid-rows-[1fr]">
+              <div class="overflow-hidden">
+                <div class="pb-10 text-gray-400 font-light leading-relaxed text-base lg:text-lg pr-6 max-w-2xl opacity-0 translate-y-4 transition-all duration-500 delay-100 ease-out group-[.is-open]:opacity-100 group-[.is-open]:translate-y-0">
+                  {faq.answer}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="lg:mt-24 pt-10 text-center md:text-left reveal-element"
+      style="--delay: 600ms"
+    >
+      <p class="text-gray-500 text-sm mb-4 font-medium tracking-wide uppercase">
+        ¿Aún tienes dudas?
+      </p>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 text-aux-secondary text-base font-bold tracking-widest hover:text-white transition-colors duration-300 group"
+      >
+        <span>CONTACTAR AL ESTUDIO</span>
+        <svg
+          class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <use href="./shadow-studio-Sprite.svg#arrow-right"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initFAQ } from "./faq/faqLogic.js";
+
+  initFAQ();
+
+  document.addEventListener("astro:page-load", initFAQ);
+</script>
+
+<style>
+  .reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-element.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
