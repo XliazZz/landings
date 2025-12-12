@@ -1,27 +1,95 @@
 ---
 import "../styles/shadowstudio.css";
 import SmoothScroll from "../components/generic/SmoothScroll.astro";
+import Preloader from "../components/shadow-studio/Preloader.astro";
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  noIndex?: boolean;
 }
 
-const { title, description } = Astro.props;
+
+const optimizedImage = "https://res.cloudinary.com/do5ubt5g0/image/upload/v1765512564/Gemini_Generated_Image_gv5r6agv5r6agv5r_pg0sf0.png".replace(
+  "/upload/",
+  "/upload/w_1200,h_630,c_fill,q_auto,f_jpg/"
+);
+
+const {
+  title = "Shadow Studio | Arte en la Piel",
+  description = "Estudio de tatuajes profesional especializado en realismo, blackwork y diseño personalizado. Transforma tu visión en arte.",
+
+  image = optimizedImage,
+  noIndex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || "https://shadowstudio.com.ar"
+);
+
+const pageTitle = title.includes("Shadow") ? title : `${title} | Shadow Studio`;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+
+    <meta name="theme-color" content="#111111" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicons/shadow/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicons/shadow/favicon.svg" />
+    <link rel="shortcut icon" href="/favicons/shadow/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/shadow/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/favicons/shadow/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content="Shadow Studio Branding" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
   </head>
-  <body>
-    <slot />
-    <SmoothScroll offset={-90} duration={1.5} />
+
+  <body
+    class="bg-zinc-950 text-zinc-50 antialiased selection:bg-white selection:text-black font-shadowstudio-body"
+  >
+    <Preloader />
+
+    <main class="relative w-full min-h-screen flex flex-col">
+      <slot />
+    </main>
+
+    <SmoothScroll offset={0} duration={1.2} />
   </body>
 </html>

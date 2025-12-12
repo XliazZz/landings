@@ -1,0 +1,84 @@
+---
+
+---
+
+<section
+  class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#111111] text-center px-6"
+>
+  <div
+    class="fixed inset-0 z-0 pointer-events-none opacity-[0.07] mix-blend-overlay"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+  >
+  </div>
+
+  <div class="relative z-10 flex flex-col items-center max-w-2xl mx-auto">
+    <h1
+      class="text-[35vw] sm:text-[25vw] leading-none font-shadowstudio-heading font-bold text-transparent opacity-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none"
+      style="-webkit-text-stroke: 2px #F5F5F5;"
+    >
+      404
+    </h1>
+
+    <p
+      class="text-xs uppercase tracking-[0.4em] text-[#E3A046] font-bold mb-6 font-shadowstudio-body animate-fade-in-up"
+    >
+      Coordenadas Incorrectas
+    </p>
+
+    <h2
+      class="text-4xl md:text-6xl font-bold uppercase text-[#F5F5F5] mb-6 font-shadowstudio-heading tracking-wide animate-fade-in-up delay-100"
+    >
+      Lienzo en Blanco
+    </h2>
+
+    <p
+      class="text-zinc-400 max-w-md mx-auto mb-10 font-shadowstudio-body font-light leading-relaxed text-lg animate-fade-in-up delay-200"
+    >
+      La página que buscas ha sido borrada o nunca existió. Al igual que un
+      tatuaje mal hecho, es mejor no insistir aquí.
+    </p>
+
+    <a
+      href="/shadowstudio"
+      class="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden border border-white/20 transition-colors duration-300 animate-fade-in-up delay-300"
+    >
+      <span
+        class="absolute inset-0 w-full h-full bg-[#9b1748] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out -z-10"
+      ></span>
+
+      <span
+        class="relative text-sm font-bold uppercase tracking-[0.2em] text-[#F5F5F5] font-shadowstudio-heading"
+      >
+        Volver al Estudio
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 0; /* Comienza invisible */
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+</style>

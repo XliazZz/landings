@@ -12,4 +12,34 @@
 
   --color-aux-primary: #F2B3C2; /* Este es color rosa claro */
   --color-aux-secondary: #E3A046; /* Este es color amarillo/dorado */
+
+  --font-shadowstudio-heading: "Oswald", sans-serif;
+  --font-shadowstudio-body: "Inter", sans-serif;
+}
+
+::selection {
+  background-color: #9b1748;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #E3A046;
+}
+::-webkit-scrollbar-thumb {
+  background: #D6296A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F2B3C2;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-shadowstudio-heading);
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
 }
