@@ -23,7 +23,7 @@ const { items } = Astro.props;
     {
       items.map((item) => (
         <div
-          class="keen-slider__slide relative aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-sm cursor-pointer gallery-slide"
+          class="keen-slider__slide relative h-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-sm cursor-pointer gallery-slide"
           data-category={item.category}
           data-image={item.image}
           data-title={item.title}
